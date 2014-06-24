@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://renhai.github.io/sitemap.xml 
