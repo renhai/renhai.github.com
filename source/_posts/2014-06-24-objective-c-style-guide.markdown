@@ -29,7 +29,7 @@ Objective-C 是 C 语言的扩展，增加了动态类型和面对对象的特�
 
 方法应该像这样：
 
-	- (void)doSomethingWithString:(NSString \*)theString {
+	- (void)doSomethingWithString:(NSString *)theString {
 	...
 	}
 
