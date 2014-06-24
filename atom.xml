@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的技术博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2014-06-24T18:51:48+08:00</updated>
+  <updated>2014-06-24T19:07:52+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -47,7 +47,7 @@ Indent width: 4 spaces
 
 <p>方法应该像这样：</p>
 
-<pre><code>- (void)doSomethingWithString:(NSString \*)theString {
+<pre><code>- (void)doSomethingWithString:(NSString *)theString {
 ...
 }
 </code></pre>
