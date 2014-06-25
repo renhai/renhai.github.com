@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的技术博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2014-06-25T10:50:44+08:00</updated>
+  <updated>2014-06-25T14:18:22+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -12,6 +12,143 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git必知必会]]></title>
+    <link href="http://renhai.github.io/blog/2014/06/25/git-must-know/"/>
+    <updated>2014-06-25T12:21:52+08:00</updated>
+    <id>http://renhai.github.io/blog/2014/06/25/git-must-know</id>
+    <content type="html"><![CDATA[<h2>git 配置查看</h2>
+
+<hr />
+
+<pre><code>git config -l
+</code></pre>
+
+<h2>Log 查看</h2>
+
+<hr />
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git log
+</span><span class='line'>git log --stat 查看提交文件信息
+</span><span class='line'>git log --graph 图形化查看提交log</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>分支</h2>
+
+<hr />
+
+<h3>本地新建一个分支并关联到远程分支</h3>
+
+<pre><code>git checkout -b “本地新分支名” “远程分支名”
+</code></pre>
+
+<h3>本地删除分支</h3>
+
+<pre><code>git branch -d “本地分支名”
+</code></pre>
+
+<h3>分支合并</h3>
+
+<pre><code>git merge --no-ff 分支名
+</code></pre>
+
+<h3>干掉远程已删除分支</h3>
+
+<pre><code>git remote prune origin
+</code></pre>
+
+<h2>tag 操作</h2>
+
+<hr />
+
+<h3>显示标签</h3>
+
+<pre><code>git tag -l -n1
+</code></pre>
+
+<h3>创建本地标签</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git tag -m "message" V5.8.1
+</span><span class='line'>git tag -a V7.3.1 -m "V7.3.1 发布"</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>将本地标签 push 到远程</h3>
+
+<pre><code>git push origin V5.8.1
+</code></pre>
+
+<h2>常规操作流程</h2>
+
+<hr />
+
+<h3>git pull &mdash;rebase 冲突解决</h3>
+
+<ol>
+<li><p>确定当前分支状态</p>
+
+<p> 当发生冲突时，会进入到临时的 rebase 状态，可使用 git status 或者 git branch 命令确定当前分支状态。</p></li>
+<li><p>修改冲突</p>
+
+<p> 推荐使用 vi 修改冲突，使用 vi /&lt;&lt;&lt;&lt;&lt;&lt;&lt; 命令定位冲突代码行，修改冲突，n 命令可向下搜索下一处冲突行，N 命令为向上搜索，直到确定文件没有冲突标记后才可退出编辑。
+修改冲突时，如果是代码冲突，需要两位当事人在场确定冲突修改方案，如果没有询问其他代码作者擅自删除他人代码，导致工程功能不完整，事后会追究责任。</p></li>
+<li><p>标记冲突解决</p>
+
+<p> 使用 git add xxx 命令标记冲突解决，使用 git status 命令查看确定冲突状态是否解决。</p></li>
+<li><p>rebase 继续</p>
+
+<p> 解决完某 commit 冲突后，使用 git rebase &mdash;continue 命令继续 rebase 操作，如果遇到冲突再重复以上步骤，逐步解决所有冲突，直到 rebase 操作继续，回到原分支。</p></li>
+<li><p>如果发生意外</p>
+
+<p> 如果发生意外操作，使用 git rebase &mdash;abort 命令放弃本次 rebase 操作，之后 使用 git pull &mdash;rebase 命令重新操作</p></li>
+</ol>
+
+
+<h3>修改审核失败Patch流程</h3>
+
+<ol>
+<li><p>暂存本地修改</p>
+
+<p> 使用 git stash 命令暂存本地修改。</p></li>
+<li><p>退回到审核失败的patch commit</p>
+
+<p> 使用 git rebase -i HEAD^ 命令退回到审核失败的Patch，^的数量为需修改 commit 距 HEAD 的commit 个数。
+使用 commit sha号或者 HEAD~n 替代 HEAD^ 也可以。</p></li>
+<li><p>在 rebase 选择界面，将需要修改的 commit 标识置为 edit</p>
+
+<ul>
+<li> pick 为不需修改，直接使用 commit；</li>
+<li> reword 为只修改 commit message;</li>
+<li> edit 为使用 commit，但会暂停到该 commit，暂停时可以修改该 commit，最后使用 amend 方法提交;</li>
+<li> squash 跟前一个 commit 合并，但是保留 commit log 信息;</li>
+<li> fixup 同 squash 类似，跟前一个commit合并，但是放弃 commit log 信息;</li>
+<li> exec 运行命令行；</li>
+</ul>
+</li>
+<li><p>修改审核失败的 commit</p>
+
+<p> 开始 rebase 操作，当暂停在需修改 commit 时，可以对该 commit 做任何操作，按 Gerrit 中的审核意见修改 commit。</p></li>
+<li><p>保存修改并提交</p>
+
+<p> 修改完成后，类似常规 commit 操作，使用 git add . 添加修改，使用 git commit &mdash;amend 命令将修改合并到当前 commit 中。</p></li>
+<li><p>继续 rebase 后面的 commit</p>
+
+<p> 使用 git rebase &mdash;continue 命令继续 rebase 后面所有 commit</p></li>
+<li><p>将修改完成后最新的 commit 提交到服务器。</p>
+
+<p> 使用 git push 命令将修改后的 commit 提交到代码服务器。</p></li>
+<li><p>取回本地暂存修</p>
+
+<p> 使用 git stash pop 命令取回第一步中暂存到本地的修改。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Objective-C 代码规范指南]]></title>
