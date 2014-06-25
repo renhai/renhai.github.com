@@ -9,12 +9,13 @@
   <meta name="author" content="安迪">
 
   
-  <meta name="description" content="git 配置查看 git config -l Log 查看 1
-2
-3
-git log
-git log --stat 查看提交文件信息
-git log --graph 图形化查看提交log 分支 本地新建一个分支并关联到远程分支 git checkout -b “本地新分支名” “远程分支名” &hellip;">
+  <meta name="description" content="$1 &ndash; $9 传递给shell脚本的第1-9个参数
+$0 所执行脚本的名称
+$# 传递给shell脚本的参数个数
+$? 命令执行结果反馈，0表示执行成功，其余数字表示执行不成功
+$$ 当前执行脚本的pid
+$! 运行在后台的最后一个作业的进程的pid
+$* &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +68,52 @@ git log --graph 图形化查看提交log 分支 本地新建一个分支并关�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/25/shell-special-variables/">Shell脚本中一些常用特殊变量的含义</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T17:25:29+08:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>$1 &ndash; $9 传递给shell脚本的第1-9个参数</li>
+<li>$0 所执行脚本的名称</li>
+<li>$# 传递给shell脚本的参数个数</li>
+<li>$? 命令执行结果反馈，0表示执行成功，其余数字表示执行不成功</li>
+<li>$$ 当前执行脚本的pid</li>
+<li>$! 运行在后台的最后一个作业的进程的pid</li>
+<li>$* 以一个单字符串显示所有向脚本传递的参数（字符串）</li>
+<li>$@ 所有命令行参数的内容（字符串数组）</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -715,6 +762,10 @@ if (great)
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/25/shell-special-variables/">Shell脚本中一些常用特殊变量的含义</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/06/25/git-must-know/">Git必知必会</a>
