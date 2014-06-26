@@ -11,6 +11,8 @@ categories:
 ---
 	git config -l
 
+<!--more-->
+
 ##Log 查看
 ---
 ```

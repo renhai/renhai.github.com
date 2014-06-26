@@ -12,6 +12,7 @@ Objective-C 是 C 语言的扩展，增加了动态类型和面对对象的特�
 
 本指南主要基于 [Google Objective-C Style Guide](http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml) 修改简化，作为 iOS Team 编码规范和 Code Review 指导。
 
+<!--more-->
 
 ###留白和格式
 ***
