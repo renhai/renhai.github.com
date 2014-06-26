@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的技术博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2014-06-26T13:35:01+08:00</updated>
+  <updated>2014-06-26T13:55:20+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac 和 iOS 开发资源汇总]]></title>
+    <link href="http://renhai.github.io/blog/2014/06/26/ios-resources/"/>
+    <updated>2014-06-26T13:51:48+08:00</updated>
+    <id>http://renhai.github.io/blog/2014/06/26/ios-resources</id>
+    <content type="html"><![CDATA[<h3>中文资源</h3>
+
+<hr />
+
+<p><a href="http://blog.devtang.com">唐巧的技术博客</a></p>
+
+<p><a href="http://beyondvincent.com">破船之家</a></p>
+
+<p><a href="http://www.imallen.com">I&rsquo;m Allen</a></p>
+
+<p><a href="http://lianxu.me/">http://lianxu.me/</a></p>
+
+<!--more-->
+
+
+<h3>国外资源</h3>
+
+<hr />
+
+<p><a href="http://www.objc.io">Objc.io</a> 讨论 ObjC 的高级实现和深入技巧</p>
+
+<p><a href="http://iosdevweekly.com">http://iosdevweekly.com</a> 杂志式的每周订阅的 iOS 开发咨询</p>
+
+<p><a href="http://www.raywenderlich.com">Ray Wenderlich的博客</a> 有一些易于学习的教程</p>
+
+<p><a href="http://www.mattgemmell.com">Matt Gemmell的博客</a> Matt对Objective-C 开发拥有丰富的经验和观点，这些观点非常值得我们去关注</p>
+
+<h3>其他资源</h3>
+
+<hr />
+
+<p><a href="http://www.cnblogs.com/yingkong1987/archive/2013/07/24/3209777.html">http://www.cnblogs.com/yingkong1987/archive/2013/07/24/3209777.html</a></p>
+
+<p><a href="http://rrurl.cn/2nl6sB">http://rrurl.cn/2nl6sB</a></p>
+
+<p><a href="http://blog.csdn.net/zhibudefeng/article/details/8822597">http://blog.csdn.net/zhibudefeng/article/details/8822597</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Shell脚本中一些常用特殊变量的含义]]></title>
