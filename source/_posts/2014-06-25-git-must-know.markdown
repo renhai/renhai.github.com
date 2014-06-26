@@ -3,7 +3,7 @@ layout: post
 title: "Git必知必会"
 date: 2014-06-25 12:21:52 +0800
 comments: true
-categories: 
+categories: git 
 ---
 
 

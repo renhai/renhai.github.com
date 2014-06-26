@@ -3,7 +3,7 @@ layout: post
 title: "Shell脚本中一些常用特殊变量的含义"
 date: 2014-06-25 17:25:29 +0800
 comments: true
-categories: 
+categories: Shell
 ---
 
 *	$1 - $9 传递给shell脚本的第1-9个参数
