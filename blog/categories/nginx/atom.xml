@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Nginx | 安迪的博客]]></title>
+  <link href="http://renhai.github.io/blog/categories/nginx/atom.xml" rel="self"/>
+  <link href="http://renhai.github.io/"/>
+  <updated>2014-06-26T15:47:30+08:00</updated>
+  <id>http://renhai.github.io/</id>
+  <author>
+    <name><![CDATA[安迪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Nginx配置www域名和无www域名互转]]></title>
+    <link href="http://renhai.github.io/blog/2014/06/26/nginx-www-to-nonwww/"/>
+    <updated>2014-06-26T15:42:45+08:00</updated>
+    <id>http://renhai.github.io/blog/2014/06/26/nginx-www-to-nonwww</id>
+    <content type="html"><![CDATA[<p>最近申请了自己的域名，并在dnspod上将域名指向在digitalocean申请的vps，vps上安装了nginx，一番折腾后发现访问有www的域名和没有www的域名返回不同页面，google了一下，最后问题解决。</p>
+
+<p>www.renhai.me转向renhai.me，配置如下：<!--more-->
+```</p>
+
+<pre><code>server {
+    listen       80;
+    server_name  www.renhai.me renhai.me;
+    if ($host = 'www.renhai.me' ) {
+            rewrite ^/(.*)$ http://renhai.me/$1 permanent;
+    }
+
+    ......
+
+}
+</code></pre>
+
+<p><code>
+同理，也可以将renhai.me转向www.renhai.me，配置如下：
+</code></p>
+
+<pre><code>server {
+    listen       80;
+    server_name  www.renhai.me renhai.me;
+    if ($host = 'renhai.me' ) {
+            rewrite ^/(.*)$ http://www.renhai.me/$1 permanent;
+    }
+
+    ......
+
+}
+</code></pre>
+
+<p><code>
+另一种方式是：
+</code></p>
+
+<pre><code>server {
+    listen       80;
+    server_name  www.renhai.me;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+
+        ......
+
+    }
+}
+server {
+    listen  80;
+    server_name renhai.me;
+    return  301 http://www.renhai.me$request_uri;
+}
+</code></pre>
+
+<p>```
+推荐使用第一种方式。</p>
+
+<p>测试一下：
+<a href="http://www.renhai.me">http://www.renhai.me</a>
+<a href="http://renhai.me">http://renhai.me</a></p>
+]]></content>
+  </entry>
+  
+</feed>
