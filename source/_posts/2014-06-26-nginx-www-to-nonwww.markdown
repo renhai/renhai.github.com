@@ -57,6 +57,8 @@ www.renhai.me转向renhai.me，配置如下：<!--more-->
 推荐使用第一种方式。
 
 测试一下：
+
 [http://www.renhai.me](http://www.renhai.me)
+
 [http://renhai.me](http://renhai.me)
 
