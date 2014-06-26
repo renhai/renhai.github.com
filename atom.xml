@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2014-06-26T15:47:30+08:00</updated>
+  <updated>2014-06-26T16:12:51+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -108,9 +108,11 @@
 
 <p>推荐使用第一种方式。</p>
 
-<p>测试一下：
-<a href="http://www.renhai.me">http://www.renhai.me</a>
-<a href="http://renhai.me">http://renhai.me</a></p>
+<p>测试一下：</p>
+
+<p><a href="http://www.renhai.me">http://www.renhai.me</a></p>
+
+<p><a href="http://renhai.me">http://renhai.me</a></p>
 ]]></content>
   </entry>
   
