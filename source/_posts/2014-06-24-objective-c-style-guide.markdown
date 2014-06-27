@@ -4,6 +4,7 @@ title: "Objective-C 代码规范指南"
 date: 2014-06-24 17:33:06 +0800
 comments: true
 categories: Objective-C
+styles: [data-table]
 ---
 
 ###背景介绍
@@ -142,30 +143,14 @@ Objective-C 是 C 语言的扩展，增加了动态类型和面对对象的特�
 
 文件的扩展名应该如下：
 
-<table class="confluenceTable" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; clear: left; background-image: none; margin: 5px 0px; border-collapse: collapse; padding: 0px; background-position: initial initial; background-repeat: initial initial;">
-<tbody>
-<tr style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">.h</td>
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">C/C++/Objective-C 的头文件</td>
-</tr>
-<tr style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">.m</td>
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">Ojbective-C 实现文件</td>
-</tr>
-<tr style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">.mm</td>
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">Ojbective-C++ 的实现文件</td>
-</tr>
-<tr style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">.cc</td>
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">纯 C++ 的实现文件</td>
-</tr>
-<tr style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; background-position: initial initial; background-repeat: initial initial;">
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">.c</td>
-<td class="confluenceTd" style="font-size: 10pt; line-height: 13pt; color: #333333; font-weight: normal; background-image: none; border: 1px solid #dddddd; padding: 5px; vertical-align: top; min-width: 0.6em; background-position: initial initial; background-repeat: initial initial;">纯 C 的实现文件</td>
-</tr>
-</tbody>
-</table>
+扩展名 |描述
+:-----:|:------------------------:
+.h     |C/C++/Objective-C 的头文件
+.m     |Ojbective-C 实现文件      
+.mm    |Ojbective-C++ 的实现文件  
+.cc    |纯 C++ 的实现文件         
+.c     |纯 C 的实现文件 
+<br />
 
 类别的文件名应该包含被扩展的类名，如：“GTMNSString+Utils.h” 或 “GTMNSTextView+Autocomplete.h”。
 
