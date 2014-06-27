@@ -3,7 +3,7 @@ layout: post
 title: "Objective-C 代码规范指南"
 date: 2014-06-24 17:33:06 +0800
 comments: true
-categories: Objective-C
+categories: [Objective-C,iOS]
 styles: [data-table]
 ---
 
