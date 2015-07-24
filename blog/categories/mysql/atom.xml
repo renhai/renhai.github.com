@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mysql | 安迪的博客]]></title>
+  <link href="http://renhai.github.io/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://renhai.github.io/"/>
+  <updated>2015-07-25T01:27:33+08:00</updated>
+  <id>http://renhai.github.io/</id>
+  <author>
+    <name><![CDATA[安迪]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL删除重复记录]]></title>
+    <link href="http://renhai.github.io/blog/2015/07/25/mysql-delete-duplicate/"/>
+    <updated>2015-07-25T01:14:32+08:00</updated>
+    <id>http://renhai.github.io/blog/2015/07/25/mysql-delete-duplicate</id>
+    <content type="html"><![CDATA[<h3>准备数据</h3>
+
+<p><code>``
+CREATE TABLE</code>test_01<code>(
+ </code>id<code>int(11) NOT NULL AUTO_INCREMENT,
+ </code>name<code>varchar(45) NOT NULL,
+ </code>value<code>varchar(45) NOT NULL,
+  PRIMARY KEY (</code>id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8</p>
+
+<p>insert into test_01 (name, value) values (&lsquo;a&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;a&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;b&rsquo;,&lsquo;iii&rsquo;);
+insert into test_01 (name, value) values (&lsquo;b&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;b&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;c&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;c&rsquo;,&lsquo;pp&rsquo;);
+insert into test_01 (name, value) values (&lsquo;c&rsquo;,&lsquo;iii&rsquo;);
+```
+数据准备完成后，结果集如下：</p>
+
+<p><code>
+mysql&gt; select * from test_01;
++----+------+-------+
+| id | name | value |
++----+------+-------+
+|  1 | a    | pp    |
+|  2 | a    | pp    |
+|  3 | b    | iii   |
+|  4 | b    | pp    |
+|  5 | b    | pp    |
+|  6 | c    | pp    |
+|  7 | c    | pp    |
+|  8 | c    | iii   |
++----+------+-------+
+8 rows in set (0.00 sec)
+</code></p>
+
+<p>要求删除重复元素，并保留id较小的元素，期望得到的结果集如下：
+<code>
+mysql&gt; select * from test_01;
++----+------+-------+
+| id | name | value |
++----+------+-------+
+|  1 | a    | pp    |
+|  3 | b    | iii   |
+|  4 | b    | pp    |
+|  6 | c    | pp    |
+|  8 | c    | iii   |
++----+------+-------+
+5 rows in set (0.00 sec)
+</code></p>
+
+<h3>方案</h3>
+
+<p>方案1：
+```
+DELETE FROM test_01
+WHERE</p>
+
+<pre><code>id NOT IN (SELECT
+    min_id
+FROM
+    (SELECT
+        MIN(id) AS min_id
+    FROM
+        test_01
+    GROUP BY name , value) AS tmp);
+</code></pre>
+
+<p>```</p>
+
+<p>方案2：
+```
+DELETE a FROM test_01 a</p>
+
+<pre><code>    LEFT JOIN
+(SELECT
+    MIN(id) AS id
+FROM
+    test_01
+GROUP BY name , value) AS b ON a.id = b.id
+</code></pre>
+
+<p>WHERE</p>
+
+<pre><code>b.id IS NULL; 
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

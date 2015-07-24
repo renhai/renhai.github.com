@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2014-07-04T21:43:02+08:00</updated>
+  <updated>2015-07-25T01:27:33+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL删除重复记录]]></title>
+    <link href="http://renhai.github.io/blog/2015/07/25/mysql-delete-duplicate/"/>
+    <updated>2015-07-25T01:14:32+08:00</updated>
+    <id>http://renhai.github.io/blog/2015/07/25/mysql-delete-duplicate</id>
+    <content type="html"><![CDATA[<h3>准备数据</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE TABLE `test_01` (
+</span><span class='line'>  `id` int(11) NOT NULL AUTO_INCREMENT,
+</span><span class='line'>  `name` varchar(45) NOT NULL,
+</span><span class='line'>  `value` varchar(45) NOT NULL,
+</span><span class='line'>  PRIMARY KEY (`id`)
+</span><span class='line'>) ENGINE=InnoDB DEFAULT CHARSET=utf8
+</span><span class='line'> 
+</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('b','iii');
+</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','iii');</span></code></pre></td></tr></table></div></figure>
+
+
+<p>数据准备完成后，结果集如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>| id | name | value |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>|  1 | a    | pp    |
+</span><span class='line'>|  2 | a    | pp    |
+</span><span class='line'>|  3 | b    | iii   |
+</span><span class='line'>|  4 | b    | pp    |
+</span><span class='line'>|  5 | b    | pp    |
+</span><span class='line'>|  6 | c    | pp    |
+</span><span class='line'>|  7 | c    | pp    |
+</span><span class='line'>|  8 | c    | iii   |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>8 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>要求删除重复元素，并保留id较小的元素，期望得到的结果集如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>| id | name | value |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>|  1 | a    | pp    |
+</span><span class='line'>|  3 | b    | iii   |
+</span><span class='line'>|  4 | b    | pp    |
+</span><span class='line'>|  6 | c    | pp    |
+</span><span class='line'>|  8 | c    | iii   |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>5 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方案</h3>
+
+<p>方案1：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM test_01
+</span><span class='line'>WHERE
+</span><span class='line'>    id NOT IN (SELECT
+</span><span class='line'>        min_id
+</span><span class='line'>    FROM
+</span><span class='line'>        (SELECT
+</span><span class='line'>            MIN(id) AS min_id
+</span><span class='line'>        FROM
+</span><span class='line'>            test_01
+</span><span class='line'>        GROUP BY name , value) AS tmp);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>方案2：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE a FROM test_01 a
+</span><span class='line'>        LEFT JOIN
+</span><span class='line'>    (SELECT
+</span><span class='line'>        MIN(id) AS id
+</span><span class='line'>    FROM
+</span><span class='line'>        test_01
+</span><span class='line'>    GROUP BY name , value) AS b ON a.id = b.id
+</span><span class='line'>WHERE
+</span><span class='line'>    b.id IS NULL; </span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[开始使用Java Lambda表达式]]></title>

@@ -5,15 +5,26 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Nginx配置www域名和无www域名互转 - 安迪的博客</title>
+  <title>MySQL删除重复记录 - 安迪的博客</title>
   <meta name="author" content="安迪">
 
   
-  <meta name="description" content="最近申请了自己的域名，并在dnspod上将域名指向在digitalocean申请的vps，vps上安装了nginx，一番折腾后发现访问有www的域名和没有www的域名返回不同页面，google了一下，最后问题解决。 www.renhai.me转向renhai.me，配置如下： 1
+  <meta name="description" content="准备数据 1
 2
 3
 4
-5 &hellip;">
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+CREATE TABLE `test_01` ( `id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) NOT NULL, `value` varchar( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,7 +33,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://renhai.github.io/blog/2014/06/26/nginx-www-to-nonwww">
+  <link rel="canonical" href="http://renhai.github.io/blog/2015/07/25/mysql-delete-duplicate">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    
@@ -81,7 +92,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
   <header>
     
-      <h1 class="entry-title">Nginx配置www域名和无www域名互转</h1>
+      <h1 class="entry-title">MySQL删除重复记录</h1>
     
     
       <p class="meta">
@@ -97,64 +108,14 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-06-26T15:42:45+08:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+<time datetime="2015-07-25T01:14:32+08:00" pubdate data-updated="true">Jul 25<sup>th</sup>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>最近申请了自己的域名，并在dnspod上将域名指向在digitalocean申请的vps，vps上安装了nginx，一番折腾后发现访问有www的域名和没有www的域名返回不同页面，google了一下，最后问题解决。</p>
-
-<p>www.renhai.me转向renhai.me，配置如下：<!--more--></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>server {
-</span><span class='line'>    listen       80;
-</span><span class='line'>    server_name  www.renhai.me renhai.me;
-</span><span class='line'>    if ($host = 'www.renhai.me' ) {
-</span><span class='line'>            rewrite ^/(.*)$ http://renhai.me/$1 permanent;
-</span><span class='line'>    }
-</span><span class='line'>    
-</span><span class='line'>    ......
-</span><span class='line'>    
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>同理，也可以将renhai.me转向www.renhai.me，配置如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>server {
-</span><span class='line'>    listen       80;
-</span><span class='line'>    server_name  www.renhai.me renhai.me;
-</span><span class='line'>    if ($host = 'renhai.me' ) {
-</span><span class='line'>            rewrite ^/(.*)$ http://www.renhai.me/$1 permanent;
-</span><span class='line'>    }
-</span><span class='line'>    
-</span><span class='line'>    ......
-</span><span class='line'>    
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>另一种方式是：</p>
+<div class="entry-content"><h3>准备数据</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -171,34 +132,130 @@ $(document).bind('DOMNodeInserted', function(event) {
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>server {
-</span><span class='line'>    listen       80;
-</span><span class='line'>    server_name  www.renhai.me;
-</span><span class='line'>
-</span><span class='line'>    location / {
-</span><span class='line'>        root   html;
-</span><span class='line'>        index  index.html index.htm;
-</span><span class='line'>        
-</span><span class='line'>        ......
-</span><span class='line'>        
-</span><span class='line'>    }
-</span><span class='line'>}
-</span><span class='line'>server {
-</span><span class='line'>    listen  80;
-</span><span class='line'>    server_name renhai.me;
-</span><span class='line'>    return  301 http://www.renhai.me$request_uri;
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE TABLE `test_01` (
+</span><span class='line'>  `id` int(11) NOT NULL AUTO_INCREMENT,
+</span><span class='line'>  `name` varchar(45) NOT NULL,
+</span><span class='line'>  `value` varchar(45) NOT NULL,
+</span><span class='line'>  PRIMARY KEY (`id`)
+</span><span class='line'>) ENGINE=InnoDB DEFAULT CHARSET=utf8
+</span><span class='line'> 
+</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('b','iii');
+</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
+</span><span class='line'>insert into test_01 (name, value) values ('c','iii');</span></code></pre></td></tr></table></div></figure>
 
 
-<p>推荐使用第一种方式。</p>
+<p>数据准备完成后，结果集如下：</p>
 
-<p>测试一下：</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>| id | name | value |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>|  1 | a    | pp    |
+</span><span class='line'>|  2 | a    | pp    |
+</span><span class='line'>|  3 | b    | iii   |
+</span><span class='line'>|  4 | b    | pp    |
+</span><span class='line'>|  5 | b    | pp    |
+</span><span class='line'>|  6 | c    | pp    |
+</span><span class='line'>|  7 | c    | pp    |
+</span><span class='line'>|  8 | c    | iii   |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>8 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="http://www.renhai.me">http://www.renhai.me</a></p>
 
-<p><a href="http://renhai.me">http://renhai.me</a></p>
+<p>要求删除重复元素，并保留id较小的元素，期望得到的结果集如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>| id | name | value |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>|  1 | a    | pp    |
+</span><span class='line'>|  3 | b    | iii   |
+</span><span class='line'>|  4 | b    | pp    |
+</span><span class='line'>|  6 | c    | pp    |
+</span><span class='line'>|  8 | c    | iii   |
+</span><span class='line'>+----+------+-------+
+</span><span class='line'>5 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方案</h3>
+
+<p>方案1：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM test_01
+</span><span class='line'>WHERE
+</span><span class='line'>    id NOT IN (SELECT
+</span><span class='line'>        min_id
+</span><span class='line'>    FROM
+</span><span class='line'>        (SELECT
+</span><span class='line'>            MIN(id) AS min_id
+</span><span class='line'>        FROM
+</span><span class='line'>            test_01
+</span><span class='line'>        GROUP BY name , value) AS tmp);</span></code></pre></td></tr></table></div></figure>
+
+
+<p>方案2：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE a FROM test_01 a
+</span><span class='line'>        LEFT JOIN
+</span><span class='line'>    (SELECT
+</span><span class='line'>        MIN(id) AS id
+</span><span class='line'>    FROM
+</span><span class='line'>        test_01
+</span><span class='line'>    GROUP BY name , value) AS b ON a.id = b.id
+</span><span class='line'>WHERE
+</span><span class='line'>    b.id IS NULL; </span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 
@@ -221,12 +278,12 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-06-26T15:42:45+08:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+<time datetime="2015-07-25T01:14:32+08:00" pubdate data-updated="true">Jul 25<sup>th</sup>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/nginx/'>nginx</a>
+    <a class='category' href='/blog/categories/mysql/'>mysql</a>
   
 </span>
 
@@ -248,10 +305,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/26/ios-resources/" title="Previous Post: Mac 和 iOS 开发资源汇总">&laquo; Mac 和 iOS 开发资源汇总</a>
+        <a class="basic-alignment left" href="/blog/2014/07/04/start-using-java-lambda-expressions/" title="Previous Post: 开始使用Java Lambda表达式">&laquo; 开始使用Java Lambda表达式</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/26/ios-common-macro/" title="Next Post: iOS开发中一些常用的宏定义">iOS开发中一些常用的宏定义 &raquo;</a>
       
     </p>
   </footer>
@@ -262,7 +317,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 <section>
     <h1>评论</h1>
     <div id="comments" aria-live="polite"><!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/06/26/nginx-www-to-nonwww" data-title="nginx配置www域名和无www域名互转"></div>
+	<div class="ds-thread" data-thread-key="/blog/2015/07/25/mysql-delete-duplicate" data-title="MySQL删除重复记录"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
