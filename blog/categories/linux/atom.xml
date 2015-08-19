@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Shell | 安迪的博客]]></title>
-  <link href="http://renhai.github.io/blog/categories/shell/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Linux | 安迪的博客]]></title>
+  <link href="http://renhai.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
   <updated>2015-08-19T17:53:33+08:00</updated>
   <id>http://renhai.github.io/</id>
@@ -154,25 +154,6 @@ let val--
 <li><p>stderr(标准错误) 2</p></li>
 <li><p>自定义文件描述符</p></li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Shell脚本中一些常用特殊变量的含义]]></title>
-    <link href="http://renhai.github.io/blog/2014/06/25/shell-special-variables/"/>
-    <updated>2014-06-25T17:25:29+08:00</updated>
-    <id>http://renhai.github.io/blog/2014/06/25/shell-special-variables</id>
-    <content type="html"><![CDATA[<ul>
-<li>$1 &ndash; $9 传递给shell脚本的第1-9个参数</li>
-<li>$0 所执行脚本的名称</li>
-<li>$# 传递给shell脚本的参数个数<!--more--></li>
-<li>$? 命令执行结果反馈，0表示执行成功，其余数字表示执行不成功</li>
-<li>$$ 当前执行脚本的pid</li>
-<li>$! 运行在后台的最后一个作业的进程的pid</li>
-<li>$* 以一个单字符串显示所有向脚本传递的参数（字符串）</li>
-<li>$@ 所有命令行参数的内容（字符串数组）</li>
-</ul>
 
 ]]></content>
   </entry>

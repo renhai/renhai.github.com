@@ -5,16 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Git必知必会 - 安迪的博客</title>
+  <title>Linux Shell脚本攻略学习笔记1 - 安迪的博客</title>
   <meta name="author" content="安迪">
 
   
-  <meta name="description" content="git 配置查看 git config -l Log 查看 1
-2
-3
-git log
-git log --stat 查看提交文件信息
-git log --graph 图形化查看提交log 分支 本地新建一个分支并关联到远程分支 git checkout -b “本地新分支名” “远程分支名” &hellip;">
+  <meta name="description" content="1.1 简介 打开终端会出现一个提示符，如username@hostname$ 或者 root@hostname#，$表示普通用户，#表示超级用户
+shell脚本通常以#!起始，如#!/bin/bash，#!读作shebang，#英语读作sharp或hash，!读作bang
+执行脚本的两种方式： &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +20,7 @@ git log --graph 图形化查看提交log 分支 本地新建一个分支并关�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://renhai.github.io/blog/2014/06/25/git-must-know">
+  <link rel="canonical" href="http://renhai.github.io/blog/2015/08/19/linux-shell-scripting-cookbook-note1">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    
@@ -82,7 +79,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   
   <header>
     
-      <h1 class="entry-title">Git必知必会</h1>
+      <h1 class="entry-title">Linux Shell脚本攻略学习笔记1</h1>
     
     
       <p class="meta">
@@ -98,143 +95,148 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-06-25T12:21:52+08:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+<time datetime="2015-08-19T17:17:22+08:00" pubdate data-updated="true">Aug 19<sup>th</sup>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>git 配置查看</h2>
-
-<hr />
-
-<pre><code>git config -l
-</code></pre>
-
-<!--more-->
-
-
-<h2>Log 查看</h2>
-
-<hr />
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git log
-</span><span class='line'>git log --stat 查看提交文件信息
-</span><span class='line'>git log --graph 图形化查看提交log</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>分支</h2>
-
-<hr />
-
-<h3>本地新建一个分支并关联到远程分支</h3>
-
-<pre><code>git checkout -b “本地新分支名” “远程分支名”
-</code></pre>
-
-<h3>本地删除分支</h3>
-
-<pre><code>git branch -d “本地分支名”
-</code></pre>
-
-<h3>分支合并</h3>
-
-<pre><code>git merge --no-ff 分支名
-</code></pre>
-
-<h3>干掉远程已删除分支</h3>
-
-<pre><code>git remote prune origin
-</code></pre>
-
-<h2>tag 操作</h2>
-
-<hr />
-
-<h3>显示标签</h3>
-
-<pre><code>git tag -l -n1
-</code></pre>
-
-<h3>创建本地标签</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git tag -m "message" V5.8.1
-</span><span class='line'>git tag -a V7.3.1 -m "V7.3.1 发布"</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>将本地标签 push 到远程</h3>
-
-<pre><code>git push origin V5.8.1
-</code></pre>
-
-<h2>常规操作流程</h2>
-
-<hr />
-
-<h3>git pull &mdash;rebase 冲突解决</h3>
+<div class="entry-content"><h3>1.1 简介</h3>
 
 <ol>
-<li><p>确定当前分支状态</p>
-
-<p> 当发生冲突时，会进入到临时的 rebase 状态，可使用 git status 或者 git branch 命令确定当前分支状态。</p></li>
-<li><p>修改冲突</p>
-
-<p> 推荐使用 vi 修改冲突，使用 vi /&lt;&lt;&lt;&lt;&lt;&lt;&lt; 命令定位冲突代码行，修改冲突，n 命令可向下搜索下一处冲突行，N 命令为向上搜索，直到确定文件没有冲突标记后才可退出编辑。
-修改冲突时，如果是代码冲突，需要两位当事人在场确定冲突修改方案，如果没有询问其他代码作者擅自删除他人代码，导致工程功能不完整，事后会追究责任。</p></li>
-<li><p>标记冲突解决</p>
-
-<p> 使用 git add xxx 命令标记冲突解决，使用 git status 命令查看确定冲突状态是否解决。</p></li>
-<li><p>rebase 继续</p>
-
-<p> 解决完某 commit 冲突后，使用 git rebase &mdash;continue 命令继续 rebase 操作，如果遇到冲突再重复以上步骤，逐步解决所有冲突，直到 rebase 操作继续，回到原分支。</p></li>
-<li><p>如果发生意外</p>
-
-<p> 如果发生意外操作，使用 git rebase &mdash;abort 命令放弃本次 rebase 操作，之后 使用 git pull &mdash;rebase 命令重新操作</p></li>
+<li>打开终端会出现一个提示符，如<code>username@hostname$</code> 或者 <code>root@hostname#</code>，<code>$</code>表示普通用户，<code>#</code>表示超级用户</li>
+<li>shell脚本通常以<code>#!</code>起始，如<code>#!/bin/bash</code>，<code>#!</code>读作shebang，<code>#</code>英语读作sharp或hash，<code>!</code>读作bang</li>
+<li>执行脚本的两种方式：</li>
+<li><code>sh script.sh</code> 将脚本做为sh的命令行参数执行，脚本中的shebang行就不起作用了</li>
+<li><code>./script.sh</code> 首先要运行<code>chmod a+x script.sh</code>添加可执行权限，会识别shebang行，在内部已<code>/bin/bash script.sh</code>执行该脚本</li>
+<li>在bash中，命令通过分号<code>;</code>或者换行来分隔，比如
+ <code>$cmd1;cmd2</code>
+等同于
+ <code>$cmd1</code>
+ <code>$cmd2</code></li>
 </ol>
 
 
-<h3>修改审核失败Patch流程</h3>
+<hr />
+
+<h3>1.2 终端打印</h3>
+
+<h4>1.2.1 实战演练</h4>
 
 <ol>
-<li><p>暂存本地修改</p>
+<li>echo 不带引号、单引号、双引号区别</li>
+<li>printf  类似于C语言
 
-<p> 使用 git stash 命令暂存本地修改。</p></li>
-<li><p>退回到审核失败的patch commit</p>
+<h4>1.2.2补充内容</h4></li>
+<li>echo转义换行符<code>echo -e "1\t2\t3"</code></li>
+<li>打印彩色输出<code>echo -e "\033[44;37;5m ME \033[0m COOL"</code></li>
+</ol>
 
-<p> 使用 git rebase -i HEAD^ 命令退回到审核失败的Patch，^的数量为需修改 commit 距 HEAD 的commit 个数。
-使用 commit sha号或者 HEAD~n 替代 HEAD^ 也可以。</p></li>
-<li><p>在 rebase 选择界面，将需要修改的 commit 标识置为 edit</p>
 
-<ul>
-<li> pick 为不需修改，直接使用 commit；</li>
-<li> reword 为只修改 commit message;</li>
-<li> edit 为使用 commit，但会暂停到该 commit，暂停时可以修改该 commit，最后使用 amend 方法提交;</li>
-<li> squash 跟前一个 commit 合并，但是保留 commit log 信息;</li>
-<li> fixup 同 squash 类似，跟前一个commit合并，但是放弃 commit log 信息;</li>
-<li> exec 运行命令行；</li>
-</ul>
-</li>
-<li><p>修改审核失败的 commit</p>
+<hr />
 
-<p> 开始 rebase 操作，当暂停在需修改 commit 时，可以对该 commit 做任何操作，按 Gerrit 中的审核意见修改 commit。</p></li>
-<li><p>保存修改并提交</p>
+<h3>1.3 玩转变量和环境变量</h3>
 
-<p> 修改完成后，类似常规 commit 操作，使用 git add . 添加修改，使用 git commit &mdash;amend 命令将修改合并到当前 commit 中。</p></li>
-<li><p>继续 rebase 后面的 commit</p>
+<ol>
+<li><code>pgrep &lt;PID&gt;</code> <code>cat /proc/&lt;PID&gt;/environ</code></li>
+<li>变量赋值 <code>var=value</code>,<strong>等号两边没有空格</strong></li>
+<li><code>export</code>命令用来设置环境变量，<code>export PATH=$JAVA_HOME/bin:$PATH</code></li>
+<li>获取字符串长度<code>echo ${#var}</code></li>
+<li>识别当前shell版本<code>echo $SHELL</code>或<code>echo $0</code></li>
+<li><p>检查用户是否为超级用户，root用户的$UID是0</p>
 
-<p> 使用 git rebase &mdash;continue 命令继续 rebase 后面所有 commit</p></li>
-<li><p>将修改完成后最新的 commit 提交到服务器。</p>
+<p> <code>
+ #!/bin/bash
+ if [ $UID -ne 0 ]; then
+ echo "Non root user. Please run as root."
+ else
+ echo "root user"
+ fi
+</code></p></li>
+<li>修改bash提示字符串(<code>[root@vultr workspace]#</code>) ，修改<code>$PS1</code>变量</li>
+</ol>
 
-<p> 使用 git push 命令将修改后的 commit 提交到代码服务器。</p></li>
-<li><p>取回本地暂存修</p>
 
-<p> 使用 git stash pop 命令取回第一步中暂存到本地的修改。</p></li>
+<hr />
+
+<h3>1.4 通过shell进行数学运算</h3>
+
+<p>利用let，(())，[]执行基本算数操作，expr和bc执行高级操作
+1. let</p>
+
+<pre><code>变量名之前不需要添加`$`
+&gt; val1=4
+ val2=3
+let result=val1+val2
+echo result
+
+自加自减
+&gt; let val++
+let val--
+</code></pre>
+
+<ol>
+<li><p>[]操作符</p>
+
+<blockquote><p>result=$[ val1 + val2 ]</p></blockquote></li>
+<li><p>(())操作符</p>
+
+<blockquote><p>result=$((val1+val2))</p></blockquote></li>
+<li><p>expr</p>
+
+<blockquote><p>result=expr val1+val2
+ 或
+ result=$(expr val1+val2)</p></blockquote></li>
+</ol>
+
+
+<p>以上只能用于整数运算，不支持浮点数。
+1.  bc是一个数学运算的高级工具</p>
+
+<pre><code>&gt; ➜  ~ echo "4 * 132.23123" | bc
+</code></pre>
+
+<p>528.92492
+➜  ~  no=34
+➜  ~  result1=<code>echo "$no * 1.534" | bc</code>
+➜  ~  echo $result1
+52.156</p>
+
+<ol>
+<li><p>设定小数精度</p>
+
+<blockquote><p>➜  ~  echo &ldquo;scale=2;10/3&rdquo; | bc
+3.33</p></blockquote></li>
+<li><p>进制转换
+ <code>
+ ➜  ~  no=100
+ ➜  ~  echo "obase=2;$no" | bc
+ 1100100
+ ➜  ~  no=1100100
+ ➜  ~  echo "obase=10;ibase=2;$no" | bc
+ 100
+</code></p></li>
+<li><p>计算平方以及平方根
+ <code>
+ ➜  ~  echo "sqrt(100)" | bc
+ 10
+ ➜  ~  echo "10^10" | bc
+ 10000000000
+</code></p></li>
+</ol>
+
+
+<hr />
+
+<h3>1.5文件描述符和重定向</h3>
+
+<ol>
+<li>预备知识</li>
+<li>stdin(标准输入)  0</li>
+<li>stdout(标准输出) 1</li>
+<li><p>stderr(标准错误) 2</p></li>
+<li><p>自定义文件描述符</p></li>
 </ol>
 
 </div>
@@ -259,12 +261,12 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2014-06-25T12:21:52+08:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+<time datetime="2015-08-19T17:17:22+08:00" pubdate data-updated="true">Aug 19<sup>th</sup>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/git/'>git</a>
+    <a class='category' href='/blog/categories/bash/'>bash</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/shell/'>shell</a>
   
 </span>
 
@@ -286,10 +288,8 @@ $(document).bind('DOMNodeInserted', function(event) {
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/24/objective-c-style-guide/" title="Previous Post: Objective-C 代码规范指南">&laquo; Objective-C 代码规范指南</a>
+        <a class="basic-alignment left" href="/blog/2015/07/25/mysql-delete-duplicate/" title="Previous Post: MySQL删除重复记录">&laquo; MySQL删除重复记录</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/25/shell-special-variables/" title="Next Post: Shell脚本中一些常用特殊变量的含义">Shell脚本中一些常用特殊变量的含义 &raquo;</a>
       
     </p>
   </footer>
@@ -300,7 +300,7 @@ $(document).bind('DOMNodeInserted', function(event) {
 <section>
     <h1>评论</h1>
     <div id="comments" aria-live="polite"><!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="/blog/2014/06/25/git-must-know" data-title="Git必知必会"></div>
+	<div class="ds-thread" data-thread-key="/blog/2015/08/19/linux-shell-scripting-cookbook-note1" data-title="linux shell脚本攻略学习笔记1"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
