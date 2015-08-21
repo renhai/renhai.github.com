@@ -4,7 +4,7 @@
   <title><![CDATA[安迪的博客]]></title>
   <link href="http://renhai.github.io/atom.xml" rel="self"/>
   <link href="http://renhai.github.io/"/>
-  <updated>2015-08-19T17:53:33+08:00</updated>
+  <updated>2015-08-22T01:15:49+08:00</updated>
   <id>http://renhai.github.io/</id>
   <author>
     <name><![CDATA[安迪]]></name>
@@ -12,6 +12,234 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[我的Maven settings.xml]]></title>
+    <link href="http://renhai.github.io/blog/2015/08/22/my-maven-settings/"/>
+    <updated>2015-08-22T01:12:32+08:00</updated>
+    <id>http://renhai.github.io/blog/2015/08/22/my-maven-settings</id>
+    <content type="html"><![CDATA[<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+</span><span class='line'>  license agreements. See the NOTICE file distributed with this work for additional 
+</span><span class='line'>  information regarding copyright ownership. The ASF licenses this file to 
+</span><span class='line'>  you under the Apache License, Version 2.0 (the "License"); you may not use 
+</span><span class='line'>  this file except in compliance with the License. You may obtain a copy of 
+</span><span class='line'>  the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+</span><span class='line'>  by applicable law or agreed to in writing, software distributed under the 
+</span><span class='line'>  License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+</span><span class='line'>  OF ANY KIND, either express or implied. See the License for the specific 
+</span><span class='line'>  language governing permissions and limitations under the License. --&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;!-- | This is the configuration file for Maven. It can be specified at two 
+</span><span class='line'>  levels: | | 1. User Level. This settings.xml file provides configuration 
+</span><span class='line'>  for a single user, | and is normally provided in ${user.home}/.m2/settings.xml. 
+</span><span class='line'>  | | NOTE: This location can be overridden with the CLI option: | | -s /path/to/user/settings.xml 
+</span><span class='line'>  | | 2. Global Level. This settings.xml file provides configuration for all 
+</span><span class='line'>  Maven | users on a machine (assuming they're all using the same Maven | installation). 
+</span><span class='line'>  It's normally provided in | ${maven.home}/conf/settings.xml. | | NOTE: This 
+</span><span class='line'>  location can be overridden with the CLI option: | | -gs /path/to/global/settings.xml 
+</span><span class='line'>  | | The sections in this sample file are intended to give you a running start 
+</span><span class='line'>  at | getting the most out of your Maven installation. Where appropriate, 
+</span><span class='line'>  the default | values (values used when the setting is not specified) are 
+</span><span class='line'>  provided. | | --&gt;
+</span><span class='line'>&lt;settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+</span><span class='line'>  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+</span><span class='line'>  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"&gt;
+</span><span class='line'>  &lt;!-- localRepository | The path to the local repository maven will use to 
+</span><span class='line'>      store artifacts. | | Default: ${user.home}/.m2/repository 
+</span><span class='line'>  --&gt;
+</span><span class='line'>      &lt;localRepository&gt;/Users/liuqian/maven-repo&lt;/localRepository&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- interactiveMode | This will determine whether maven prompts you when 
+</span><span class='line'>      it needs input. If set to false, | maven will use a sensible default value, 
+</span><span class='line'>      perhaps based on some other setting, for | the parameter in question. | | 
+</span><span class='line'>      Default: true &lt;interactiveMode&gt;true&lt;/interactiveMode&gt; --&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- offline | Determines whether maven should attempt to connect to the 
+</span><span class='line'>      network when executing a build. | This will have an effect on artifact downloads, 
+</span><span class='line'>      artifact deployment, and others. | | Default: false &lt;offline&gt;false&lt;/offline&gt; --&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- pluginGroups | This is a list of additional group identifiers that 
+</span><span class='line'>      will be searched when resolving plugins by their prefix, i.e. | when invoking 
+</span><span class='line'>      a command line like "mvn prefix:goal". Maven will automatically add the group 
+</span><span class='line'>      identifiers | "org.apache.maven.plugins" and "org.codehaus.mojo" if these 
+</span><span class='line'>      are not already contained in the list. | --&gt;
+</span><span class='line'>  &lt;pluginGroups&gt;
+</span><span class='line'>      &lt;!-- pluginGroup | Specifies a further group identifier to use for plugin 
+</span><span class='line'>          lookup. &lt;pluginGroup&gt;com.your.plugins&lt;/pluginGroup&gt; --&gt;
+</span><span class='line'>  &lt;/pluginGroups&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- proxies | This is a list of proxies which can be used on this machine 
+</span><span class='line'>      to connect to the network. | Unless otherwise specified (by system property 
+</span><span class='line'>      or command-line switch), the first proxy | specification in this list marked 
+</span><span class='line'>      as active will be used. | --&gt;
+</span><span class='line'>   &lt;proxies&gt;
+</span><span class='line'>          &lt;!--&lt;proxy&gt;
+</span><span class='line'>          &lt;id&gt;optional&lt;/id&gt;
+</span><span class='line'>          &lt;active&gt;true&lt;/active&gt;
+</span><span class='line'>          &lt;protocol&gt;http&lt;/protocol&gt;
+</span><span class='line'>          &lt;host&gt;127.0.0.1&lt;/host&gt;
+</span><span class='line'>          &lt;port&gt;8087&lt;/port&gt;
+</span><span class='line'>      &lt;/proxy&gt;
+</span><span class='line'>  --&gt;
+</span><span class='line'>  &lt;/proxies&gt; 
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- servers | This is a list of authentication profiles, keyed by the server-id 
+</span><span class='line'>      used within the system. | Authentication profiles can be used whenever maven 
+</span><span class='line'>      must make a connection to a remote server. | --&gt;
+</span><span class='line'>  &lt;servers&gt;
+</span><span class='line'>      &lt;!-- server | Specifies the authentication information to use when connecting 
+</span><span class='line'>          to a particular server, identified by | a unique name within the system (referred 
+</span><span class='line'>          to by the 'id' attribute below). | | NOTE: You should either specify username/password 
+</span><span class='line'>          OR privateKey/passphrase, since these pairings are | used together. | &lt;server&gt; 
+</span><span class='line'>          &lt;id&gt;deploymentRepo&lt;/id&gt; &lt;username&gt;repouser&lt;/username&gt; &lt;password&gt;repopwd&lt;/password&gt; 
+</span><span class='line'>          &lt;/server&gt; --&gt;
+</span><span class='line'>
+</span><span class='line'>      &lt;!-- Another sample, using keys to authenticate. &lt;server&gt; &lt;id&gt;siteServer&lt;/id&gt; 
+</span><span class='line'>          &lt;privateKey&gt;/path/to/private/key&lt;/privateKey&gt; &lt;passphrase&gt;optional; leave 
+</span><span class='line'>          empty if not used.&lt;/passphrase&gt; &lt;/server&gt; --&gt;
+</span><span class='line'>  &lt;/servers&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- mirrors | This is a list of mirrors to be used in downloading artifacts 
+</span><span class='line'>      from remote repositories. | | It works like this: a POM may declare a repository 
+</span><span class='line'>      to use in resolving certain artifacts. | However, this repository may have 
+</span><span class='line'>      problems with heavy traffic at times, so people have mirrored | it to several 
+</span><span class='line'>      places. | | That repository definition will have a unique id, so we can create 
+</span><span class='line'>      a mirror reference for that | repository, to be used as an alternate download 
+</span><span class='line'>      site. The mirror site will be the preferred | server for that repository. 
+</span><span class='line'>      | --&gt;
+</span><span class='line'>  &lt;mirrors&gt;
+</span><span class='line'>      &lt;!-- mirror | Specifies a repository mirror site to use instead of a given 
+</span><span class='line'>          repository. The repository that | this mirror serves has an ID that matches 
+</span><span class='line'>          the mirrorOf element of this mirror. IDs are used | for inheritance and direct 
+</span><span class='line'>          lookup purposes, and must be unique across the set of mirrors. | --&gt;
+</span><span class='line'>      &lt;mirror&gt;
+</span><span class='line'>          &lt;id&gt;ui&lt;/id&gt;
+</span><span class='line'>              &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+</span><span class='line'>              &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
+</span><span class='line'>              &lt;url&gt;http://uk.maven.org/maven2/&lt;/url&gt;
+</span><span class='line'>              &lt;/mirror&gt;
+</span><span class='line'>  &lt;/mirrors&gt;
+</span><span class='line'>
+</span><span class='line'>  &lt;!-- activeProfiles | List of profiles that are active for all builds. | 
+</span><span class='line'>      &lt;activeProfiles&gt; &lt;activeProfile&gt;alwaysActiveProfile&lt;/activeProfile&gt; &lt;activeProfile&gt;anotherAlwaysActiveProfile&lt;/activeProfile&gt; 
+</span><span class='line'>      &lt;/activeProfiles&gt; --&gt;
+</span><span class='line'>&lt;/settings&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下载连接：<a href="http://renhai.github.io/downloads/settings.xml">settings.xml</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux Shell脚本攻略学习笔记1]]></title>

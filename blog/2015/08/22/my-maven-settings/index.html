@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>安迪的博客</title>
+  <title>我的Maven settings.xml - 安迪的博客</title>
   <meta name="author" content="安迪">
 
   
@@ -70,7 +70,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://renhai.github.io">
+  <link rel="canonical" href="http://renhai.github.io/blog/2015/08/22/my-maven-settings">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    
@@ -124,15 +124,12 @@ $(document).bind('DOMNodeInserted', function(event) {
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2015/08/22/my-maven-settings/">我的Maven settings.xml</a></h1>
+      <h1 class="entry-title">我的Maven settings.xml</h1>
     
     
       <p class="meta">
@@ -155,7 +152,7 @@ $(document).bind('DOMNodeInserted', function(event) {
   </header>
 
 
-  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -376,22 +373,16 @@ $(document).bind('DOMNodeInserted', function(event) {
 
 <p>下载连接：<a href="/downloads/settings.xml">settings.xml</a></p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/19/linux-shell-scripting-cookbook-note1/">Linux Shell脚本攻略学习笔记1</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">安迪</span></span>
+
+      
 
 
 
@@ -403,652 +394,67 @@ $(document).bind('DOMNodeInserted', function(event) {
   
 
 
-<time datetime="2015-08-19T17:17:22+08:00" pubdate data-updated="true">Aug 19<sup>th</sup>, 2015</time>
-        
-      </p>
+<time datetime="2015-08-22T01:12:32+08:00" pubdate data-updated="true">Aug 22<sup>nd</sup>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/maven/'>maven</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  
+  
 
-
-  <div class="entry-content"><h3>1.1 简介</h3>
-
-<ol>
-<li>打开终端会出现一个提示符，如<code>username@hostname$</code> 或者 <code>root@hostname#</code>，<code>$</code>表示普通用户，<code>#</code>表示超级用户</li>
-<li>shell脚本通常以<code>#!</code>起始，如<code>#!/bin/bash</code>，<code>#!</code>读作shebang，<code>#</code>英语读作sharp或hash，<code>!</code>读作bang</li>
-<li>执行脚本的两种方式：</li>
-<li><code>sh script.sh</code> 将脚本做为sh的命令行参数执行，脚本中的shebang行就不起作用了</li>
-<li><code>./script.sh</code> 首先要运行<code>chmod a+x script.sh</code>添加可执行权限，会识别shebang行，在内部已<code>/bin/bash script.sh</code>执行该脚本</li>
-<li>在bash中，命令通过分号<code>;</code>或者换行来分隔，比如
- <code>$cmd1;cmd2</code>
-等同于
- <code>$cmd1</code>
- <code>$cmd2</code></li>
-</ol>
-
-
-<hr />
-
-<h3>1.2 终端打印</h3>
-
-<h4>1.2.1 实战演练</h4>
-
-<ol>
-<li>echo 不带引号、单引号、双引号区别</li>
-<li>printf  类似于C语言
-
-<h4>1.2.2补充内容</h4></li>
-<li>echo转义换行符<code>echo -e "1\t2\t3"</code></li>
-<li>打印彩色输出<code>echo -e "\033[44;37;5m ME \033[0m COOL"</code></li>
-</ol>
-
-
-<hr />
-
-<h3>1.3 玩转变量和环境变量</h3>
-
-<ol>
-<li><code>pgrep &lt;PID&gt;</code> <code>cat /proc/&lt;PID&gt;/environ</code></li>
-<li>变量赋值 <code>var=value</code>,<strong>等号两边没有空格</strong></li>
-<li><code>export</code>命令用来设置环境变量，<code>export PATH=$JAVA_HOME/bin:$PATH</code></li>
-<li>获取字符串长度<code>echo ${#var}</code></li>
-<li>识别当前shell版本<code>echo $SHELL</code>或<code>echo $0</code></li>
-<li><p>检查用户是否为超级用户，root用户的$UID是0</p>
-
-<p> <code>
- #!/bin/bash
- if [ $UID -ne 0 ]; then
- echo "Non root user. Please run as root."
- else
- echo "root user"
- fi
-</code></p></li>
-<li>修改bash提示字符串(<code>[root@vultr workspace]#</code>) ，修改<code>$PS1</code>变量</li>
-</ol>
-
-
-<hr />
-
-<h3>1.4 通过shell进行数学运算</h3>
-
-<p>利用let，(())，[]执行基本算数操作，expr和bc执行高级操作
-1. let</p>
-
-<pre><code>变量名之前不需要添加`$`
-&gt; val1=4
- val2=3
-let result=val1+val2
-echo result
-
-自加自减
-&gt; let val++
-let val--
-</code></pre>
-
-<ol>
-<li><p>[]操作符</p>
-
-<blockquote><p>result=$[ val1 + val2 ]</p></blockquote></li>
-<li><p>(())操作符</p>
-
-<blockquote><p>result=$((val1+val2))</p></blockquote></li>
-<li><p>expr</p>
-
-<blockquote><p>result=expr val1+val2
- 或
- result=$(expr val1+val2)</p></blockquote></li>
-</ol>
-
-
-<p>以上只能用于整数运算，不支持浮点数。
-1.  bc是一个数学运算的高级工具</p>
-
-<pre><code>&gt; ➜  ~ echo "4 * 132.23123" | bc
-</code></pre>
-
-<p>528.92492
-➜  ~  no=34
-➜  ~  result1=<code>echo "$no * 1.534" | bc</code>
-➜  ~  echo $result1
-52.156</p>
-
-<ol>
-<li><p>设定小数精度</p>
-
-<blockquote><p>➜  ~  echo &ldquo;scale=2;10/3&rdquo; | bc
-3.33</p></blockquote></li>
-<li><p>进制转换
- <code>
- ➜  ~  no=100
- ➜  ~  echo "obase=2;$no" | bc
- 1100100
- ➜  ~  no=1100100
- ➜  ~  echo "obase=10;ibase=2;$no" | bc
- 100
-</code></p></li>
-<li><p>计算平方以及平方根
- <code>
- ➜  ~  echo "sqrt(100)" | bc
- 10
- ➜  ~  echo "10^10" | bc
- 10000000000
-</code></p></li>
-</ol>
-
-
-<hr />
-
-<h3>1.5文件描述符和重定向</h3>
-
-<ol>
-<li>预备知识</li>
-<li>stdin(标准输入)  0</li>
-<li>stdout(标准输出) 1</li>
-<li><p>stderr(标准错误) 2</p></li>
-<li><p>自定义文件描述符</p></li>
-</ol>
+  
+    <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  
 
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/07/25/mysql-delete-duplicate/">MySQL删除重复记录</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2015/08/19/linux-shell-scripting-cookbook-note1/" title="Previous Post: linux shell脚本攻略学习笔记1">&laquo; linux shell脚本攻略学习笔记1</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 
 
+<section>
+    <h1>评论</h1>
+    <div id="comments" aria-live="polite"><!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="/blog/2015/08/22/my-maven-settings" data-title="我的Maven settings.xml"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"renhai"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
 
-
-
-
-
-  
-
-
-<time datetime="2015-07-25T01:14:32+08:00" pubdate data-updated="true">Jul 25<sup>th</sup>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>准备数据</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>CREATE TABLE `test_01` (
-</span><span class='line'>  `id` int(11) NOT NULL AUTO_INCREMENT,
-</span><span class='line'>  `name` varchar(45) NOT NULL,
-</span><span class='line'>  `value` varchar(45) NOT NULL,
-</span><span class='line'>  PRIMARY KEY (`id`)
-</span><span class='line'>) ENGINE=InnoDB DEFAULT CHARSET=utf8
-</span><span class='line'> 
-</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('a','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('b','iii');
-</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('b','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('c','pp');
-</span><span class='line'>insert into test_01 (name, value) values ('c','iii');</span></code></pre></td></tr></table></div></figure>
-
-
-<p>数据准备完成后，结果集如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>| id | name | value |
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>|  1 | a    | pp    |
-</span><span class='line'>|  2 | a    | pp    |
-</span><span class='line'>|  3 | b    | iii   |
-</span><span class='line'>|  4 | b    | pp    |
-</span><span class='line'>|  5 | b    | pp    |
-</span><span class='line'>|  6 | c    | pp    |
-</span><span class='line'>|  7 | c    | pp    |
-</span><span class='line'>|  8 | c    | iii   |
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>8 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>要求删除重复元素，并保留id较小的元素，期望得到的结果集如下：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql&gt; select * from test_01;
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>| id | name | value |
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>|  1 | a    | pp    |
-</span><span class='line'>|  3 | b    | iii   |
-</span><span class='line'>|  4 | b    | pp    |
-</span><span class='line'>|  6 | c    | pp    |
-</span><span class='line'>|  8 | c    | iii   |
-</span><span class='line'>+----+------+-------+
-</span><span class='line'>5 rows in set (0.00 sec)</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>方案</h3>
-
-<p>方案1：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE FROM test_01
-</span><span class='line'>WHERE
-</span><span class='line'>    id NOT IN (SELECT
-</span><span class='line'>        min_id
-</span><span class='line'>    FROM
-</span><span class='line'>        (SELECT
-</span><span class='line'>            MIN(id) AS min_id
-</span><span class='line'>        FROM
-</span><span class='line'>            test_01
-</span><span class='line'>        GROUP BY name , value) AS tmp);</span></code></pre></td></tr></table></div></figure>
-
-
-<p>方案2：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>DELETE a FROM test_01 a
-</span><span class='line'>        LEFT JOIN
-</span><span class='line'>    (SELECT
-</span><span class='line'>        MIN(id) AS id
-</span><span class='line'>    FROM
-</span><span class='line'>        test_01
-</span><span class='line'>    GROUP BY name , value) AS b ON a.id = b.id
-</span><span class='line'>WHERE
-</span><span class='line'>    b.id IS NULL; </span></code></pre></td></tr></table></div></figure>
-
+</div>
+</section>
 
 
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/04/start-using-java-lambda-expressions/">开始使用Java Lambda表达式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-04T17:46:05+08:00" pubdate data-updated="true">Jul 4<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>简介</h3>
-
-<hr />
-
-<p>Lambda表达式是Java SE 8中一个全新和重要的特性。Lambda表达式提供一种通过使用表达式来表述方法的方式。Lambda表达式和一个方法一样，拥有一个形参列表和一个参考这些形参的方法体（可以是一个表达式或者一个代码块）。</p>
-
-<p>此外，Lambda表达式也增强了集合类库。Java SE 8为集合类库增加了两个批量数据操作相关的package：java.util.function和java.util.stream。stream类似于iterator，但是提供了更多的功能。总之，Lambda表达式和stream是自泛型和注解被添加到Java语言之后最大的一个改变。在这篇文章中，我们将要由浅入深的探索Lambda表达式和stream的强大。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/07/04/start-using-java-lambda-expressions/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/26/ios-common-macro/">iOS开发中一些常用的宏定义</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-26T17:51:36+08:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>iOS开发中巧妙的运用宏定义不仅可以提高开发效率还可以减少代码量，以下是我在开发过程中经常用到的一些宏定义，今后还会继续扩充。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/26/ios-common-macro/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/26/nginx-www-to-nonwww/">Nginx配置www域名和无www域名互转</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-26T15:42:45+08:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>最近申请了自己的域名，并在dnspod上将域名指向在digitalocean申请的vps，vps上安装了nginx，一番折腾后发现访问有www的域名和没有www的域名返回不同页面，google了一下，最后问题解决。</p>
-
-<p>www.renhai.me转向renhai.me，配置如下：</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/26/nginx-www-to-nonwww/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/26/ios-resources/">Mac 和 iOS 开发资源汇总</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-26T13:51:48+08:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>中文资源</h3>
-
-<hr />
-
-<p><a href="http://blog.devtang.com">唐巧的技术博客</a></p>
-
-<p><a href="http://beyondvincent.com">破船之家</a></p>
-
-<p><a href="http://www.imallen.com">I&rsquo;m Allen</a></p>
-
-<p><a href="http://lianxu.me/">http://lianxu.me/</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/26/ios-resources/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/25/shell-special-variables/">Shell脚本中一些常用特殊变量的含义</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-25T17:25:29+08:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>$1 &ndash; $9 传递给shell脚本的第1-9个参数</li>
-<li>$0 所执行脚本的名称</li>
-<li>$# 传递给shell脚本的参数个数</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/25/shell-special-variables/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/25/git-must-know/">Git必知必会</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-25T12:21:52+08:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>git 配置查看</h2>
-
-<hr />
-
-<pre><code>git config -l
-</code></pre>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/25/git-must-know/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/24/objective-c-style-guide/">Objective-C 代码规范指南</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-24T17:33:06+08:00" pubdate data-updated="true">Jun 24<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>背景介绍</h3>
-
-<hr />
-
-<p>Objective-C 是 C 语言的扩展，增加了动态类型和面对对象的特性。它被设计成具有易读易用的，支持复杂的面向对象设计的编程语言。它是 Mac OS X 以及 iPhone 的主要开发语言。</p>
-
-<p>本指南主要基于 <a href="http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml">Google Objective-C Style Guide</a> 修改简化，作为 iOS Team 编码规范和 Code Review 指导。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2014/06/24/objective-c-style-guide/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -1099,7 +505,7 @@ let val--
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/renhai">@renhai</a> on GitHub
@@ -1131,6 +537,8 @@ let val--
 
   
 </aside>
+
+
 
     </div>
   </div>
